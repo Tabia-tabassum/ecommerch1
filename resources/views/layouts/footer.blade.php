@@ -3,6 +3,7 @@
     <!-- Section: Social media -->
     <section class="d-flex justify-content-center justify-content-lg-between p-5 border-bottom">
       <!-- Left -->
+      <div class="container">
       <div class="me-5 d-none d-lg-block">
         <span>Get connected with us on social networks:</span>
       </div>
@@ -97,12 +98,12 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p><i class="fas fa-home me-3"></i> Boyra, Khulna</p>
+            <p><i class="fas fa-home me-3"></i> Nirala, Khulna</p>
             <p>
               <i class="fas fa-envelope me-3"></i>
-              shakibahmed2@gmail.com
+              tabia@gmail.com
             </p>
-            <p><i class="fas fa-phone me-3"></i> + 01535149448</p>
+            <p><i class="fas fa-phone me-3"></i> + 01782313730</p>
             <p><i class="fas fa-phone me-3"></i> + 01705753616</p>
           </div>
           <!-- Grid column -->
@@ -117,6 +118,7 @@
       © 2021 Copyright:
       <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
     </div>
+</div>
     <!-- Copyright -->
   </footer>
   <!-- Footer -->

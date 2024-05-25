@@ -25,14 +25,14 @@
                         <div class="list-group list-group-flush mx-3">
 
                             <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Blogs</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Items</span>
                             </a>
 
                     <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple active">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Blog</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
                       </a>
                       <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Blog</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Item</span>
                         </a>
                             <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-list-alt me-3"></i><span>Order</span>
@@ -52,7 +52,7 @@
             <!-- main content start -->
             <div class="col-lg-9">
                 <article class="card">
-                    <div class="card-header text-center">Add Blog</div>
+                    <div class="card-header text-center">Add Item</div>
 
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
@@ -60,9 +60,9 @@
                                 <form>
                                     <!-- this is form title -->
                                     <div class="my-4">
-                                        <label class="form-label">Blog Title</label>
-                                        <input id="blog_title" type="text" class="form-control" name="name" required
-                                               autofocus placeholder="Blog Title">
+                                        <label class="form-label">Item Title</label>
+                                        <input id="Item_title" type="text" class="form-control" name="name" required
+                                               autofocus placeholder="Item Title">
                                     </div>
                                     <!-- this is form details -->
                                     <div class="my-4">
@@ -87,7 +87,7 @@
 
 
                                     <div class="my-4">
-                                        <label class="form-label">Blog Image</label>
+                                        <label class="form-label">Item Image</label>
 
                                         <input id="demo_img" type="file" class="form-control">
 
