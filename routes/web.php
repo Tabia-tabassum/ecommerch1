@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [SiteController::class, 'home']);
+Route::get('/', [SiteController::class, 'home'])->name('home');
 Route::get('/about', [SiteController::class, 'About']);
 Route::get('/contact', [SiteController::class, 'Contact']);
 Route::get('/blog', [SiteController::class, 'Blog']);
@@ -35,6 +36,12 @@ Route::get('/add-blog', [SiteController::class, 'Add_blog'])->middleware('AdminA
 Route::get('/update', [SiteController::class, 'update_blog'])->middleware('AdminAuth');
 Route::get('/show-order-details', [SiteController::class, 'showOrderDetails'])->middleware('AdminAuth')->name('show-order-details');
 Route::get('/remove-order', [SiteController::class, 'removeOrder'])->middleware('AdminAuth')->name('remove-order');
+
+Route::get('/post-category', [CategoryController::class, 'index'])->name('admin.category')->middleware('AdminAuth');
+Route::post('/store-post-category', [CategoryController::class, 'storeCategory'])->name('admin.category.store')->middleware('AdminAuth');
+Route::post('/update-post-category', [CategoryController::class, 'updateCategory'])->name('admin.category.update')->middleware('AdminAuth');
+Route::get('/delete-post-category', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete')->middleware('AdminAuth');
+Route::get('/category/{id}', [CategoryController::class, 'categoryDetails'])->name('admin.category.details')->middleware('AdminAuth');
 
 // admin works
 Route::get('/update-form/{id}', [SiteController::class, 'update_form_submit'])->middleware('AdminAuth');

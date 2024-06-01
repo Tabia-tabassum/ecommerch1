@@ -37,8 +37,12 @@
                             <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-list-alt me-3"></i><span>Order</span>
                             </a>
+                            <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fa fa-list-alt me-3"></i><span>Category</span>
+                            </a>
 
-                            </i><span>Logout</span></a
+                            <a type="button" id="userLogout" class="list-group-item list-group-item-action py-2 ripple "
+                            ><i class="fa-solid fa-right-from-bracket me-3" style="font-size:20px"></i><span>Logout</span></a
                             >
 
                         </div>
@@ -61,7 +65,7 @@
                                     <!-- this is form title -->
                                     <div class="my-4">
                                         <label class="form-label">Item Title</label>
-                                        <input id="Item_title" type="text" class="form-control" name="name" required
+                                        <input id="blog_title" type="text" class="form-control" name="name" required
                                                autofocus placeholder="Item Title">
                                     </div>
                                     <!-- this is form details -->
@@ -77,6 +81,16 @@
                                         <label class="form-label">Actual Price</label>
                                         <input id="product_actual_price" type="number" class="form-control" name="actualPrice" required
                                                autofocus placeholder="Product Actual price">
+                                    </div>
+
+                                    <div class="my-4">
+                                        <label for="inputState" class="form-label">Parent Category</label>
+                                        <select id="parentCategoryId" class="form-select" name="parentCategoryId">
+                                            <option value="" selected>Choose Category</option>
+                                            @foreach($allCategories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div class="my-4">
@@ -127,6 +141,7 @@
             )[0];
             var product_actual_price = $("#product_actual_price").val() ? $("#product_actual_price").val() : false;
             var product_offer_price = $("#product_offer_price").val() ? $("#product_offer_price").val() : false;
+            var parentCategoryId = $("#parentCategoryId").val() ? $("#parentCategoryId").val() : false;
 
 
             var formData = new FormData();
@@ -136,6 +151,7 @@
             formData.append("blog_image", blog_image);
             formData.append("product_actual_price", product_actual_price);
             formData.append("product_offer_price", product_offer_price);
+            formData.append("parentCategoryId", parentCategoryId);
 
             axios
                 .post("/add-blog-submit", formData)

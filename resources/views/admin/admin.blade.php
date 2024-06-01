@@ -40,6 +40,10 @@
                             <i class="fa fa-list-alt me-3"></i><span>Order</span>
                         </a>
 
+                        <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
+                            <i class="fa fa-list-alt me-3"></i><span>Category</span>
+                        </a>
+
                         <a type="button" id="userLogout" class="list-group-item list-group-item-action py-2 ripple "
                         ><i class="fa-solid fa-right-from-bracket me-3" style="font-size:20px"></i><span>Logout</span></a
                         >
