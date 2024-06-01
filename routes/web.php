@@ -41,7 +41,7 @@ Route::get('/post-category', [CategoryController::class, 'index'])->name('admin.
 Route::post('/store-post-category', [CategoryController::class, 'storeCategory'])->name('admin.category.store')->middleware('AdminAuth');
 Route::post('/update-post-category', [CategoryController::class, 'updateCategory'])->name('admin.category.update')->middleware('AdminAuth');
 Route::get('/delete-post-category', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete')->middleware('AdminAuth');
-Route::get('/category/{id}', [CategoryController::class, 'categoryDetails'])->name('admin.category.details')->middleware('AdminAuth');
+Route::get('/category/{id}', [CategoryController::class, 'categoryDetails'])->name('admin.category.details');
 
 // admin works
 Route::get('/update-form/{id}', [SiteController::class, 'update_form_submit'])->middleware('AdminAuth');
