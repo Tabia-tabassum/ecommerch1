@@ -3,5 +3,6 @@
 use App\Models\Category;
 
 function getCategory(){
-    return Category::all();
+    $category = Category::all();
+    return isset($category) && !empty($category) ? $category : [];
 }
