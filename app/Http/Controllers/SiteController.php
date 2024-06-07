@@ -115,8 +115,12 @@ class SiteController extends Controller
     function update_form_submit(Request $request)
     {
         $id = $request->id;
-        $blog_details = Blog::where('id', $id)->first();
-        return view('admin.update_form', ['blog_details' => $blog_details]);
+        $blog_details = Blog::where('id', $id)->with(['category'])->first();
+        $allCategories =Category::all() ;
+
+        return view('admin.update_form',['blog_details'=>$blog_details,
+            'allCategories'=>$allCategories
+        ]);
     }
 
 //    admin registation
@@ -247,29 +251,34 @@ class SiteController extends Controller
         }
     }
 
-    function update_blog_submit_form(Request $request)
-    {
+    function update_blog_submit_form(Request $request){
         $blog_title = $request->input('blog_title');
         $details = $request->input('details');
         $blog_edit_id = $request->input('blog_edit_id');
-
+        $blog_image=null;
+        $blog = Blog::where('id',$blog_edit_id)->first();
 
 // start in blog image
-        $blog_image = $request->file('blog_image')->store('/public/blog_image');
+        if ($request->file('blog_image')){
+            $blog_image =  $request->file('blog_image')->store('/public/blog_image');
 
-        $blog_image = (explode('/', $blog_image))[2];
+            $blog_image=(explode('/',$blog_image))[2];
 
-        $host = $_SERVER['HTTP_HOST'];
-        $blog_image = "http://" . $host . "/storage/blog_image/" . $blog_image;
+            $host=$_SERVER['HTTP_HOST'];
+            $blog_image="http://".$host."/storage/blog_image/".$blog_image;
+        }else{
+            $blog_image =$blog->blog_image;
+        }
+
 // end in blog image
 
-        $responce = Blog::where('id', $blog_edit_id)->update([
+        $responce = Blog::where('id',$blog_edit_id)->update([
             'blog_title' => $blog_title,
             'details' => $details,
             'blog_image' => $blog_image,
         ]);
 
-        if ($responce == 1) {
+        if($responce == 1){
             return 1;
         }
 
