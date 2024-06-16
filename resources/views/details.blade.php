@@ -67,5 +67,13 @@
     </div>
 </div>
 </div>
+    <script>
+        document.querySelector('input[name="quantity"]').addEventListener('input',(event)=>{
+            let quantity = event.target.closest('.form-control').value
+            if(quantity < 0){
+                event.target.closest('.form-control').value = 1
+            }
+        })
+    </script>
 
 @endsection

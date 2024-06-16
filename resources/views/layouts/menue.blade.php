@@ -53,6 +53,10 @@
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
+
+                    <div class="form-container">
+                        <a href="{{route('admin.login')}}" class="btn btn-primary">Login</a>
+                    </div>
                 </div>
             </div>
         </nav>

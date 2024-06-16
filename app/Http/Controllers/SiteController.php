@@ -7,11 +7,18 @@ use App\Models\ProductOffer;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller
 {
+    public  $userId ;
+    public function __construct(Request $request)
+    {
+        $this->userId = $request->cookie('adminId');
+    }
+
     function home(Request $request)
     {
 
@@ -76,7 +83,7 @@ class SiteController extends Controller
 
     function Admin_Home()
     {
-        $all_blog = Blog::get();
+        $all_blog = Blog::where('id',Cookie::get('adminId'))->get();
         return view('admin.admin', ['all_blog' => $all_blog]);
     }
 
@@ -181,9 +188,10 @@ class SiteController extends Controller
 
         $admin_password_login = md5($admin_password_login);
 
-        $responce = Admin::where('email', $admin_email_login)->where('password', $admin_password_login)->count();
-        if ($responce == 1) {
+        $responce = Admin::where('email', $admin_email_login)->where('password', $admin_password_login)->first();
+        if ($responce) {
             cookie::queue('admin', $admin_email_login, 1296000);
+            cookie::queue('adminId', $responce->id, 1296000);
             return 1;
 
         }
@@ -220,6 +228,7 @@ class SiteController extends Controller
             'blog_title' => $blog_title,
             'details' => $details,
             'blog_image' => $blog_image,
+            'user_id' => Cookie::get('adminId'),
             'product_offer_price' => $product_offer_price,
             'product_actual_price' => $product_actual_price,
 

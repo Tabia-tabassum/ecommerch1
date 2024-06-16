@@ -25,7 +25,7 @@ Route::post('/product-order/{id}', [SiteController::class, 'orderProduct'])->nam
 
 // authentication
 Route::get('/reg', [SiteController::class, 'Registation']);
-Route::get('/login', [SiteController::class, 'Login']);
+Route::get('/login', [SiteController::class, 'Login'])->name('admin.login');
 Route::post('/admin-registaion', [SiteController::class, 'admin_registaion']);
 Route::post('/admin-login', [SiteController::class, 'admin_login']);
 Route::post('/admin-logout', [SiteController::class, 'admin_logout']);

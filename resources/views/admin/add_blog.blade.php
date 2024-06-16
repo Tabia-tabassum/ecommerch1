@@ -103,7 +103,7 @@
                                     <div class="my-4">
                                         <label class="form-label">Item Image</label>
 
-                                        <input id="demo_img" type="file" class="form-control">
+                                        <input id="demo_img" type="file" class="form-control" accept="image/png, image/gif, image/jpeg">
 
                                         <img src="{{asset('img/blank_image.png')}}" class="w-100" style="height:300px"
                                              id="show_image" alt="">

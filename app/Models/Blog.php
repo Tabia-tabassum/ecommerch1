@@ -13,7 +13,7 @@ class Blog extends Model
     public $keyType='int';
     public  $timestamps=false;
 
-    protected $fillable=['blog_title','details','blog_image','product_offer_price','product_actual_price'];
+    protected $fillable=['blog_title','user_id','details','blog_image','product_offer_price','product_actual_price'];
 
     public function category(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
