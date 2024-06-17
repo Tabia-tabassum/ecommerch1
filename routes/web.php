@@ -48,3 +48,11 @@ Route::get('/update-form/{id}', [SiteController::class, 'update_form_submit'])->
 Route::post('/add-blog-submit', [SiteController::class, 'add_blog_submit'])->middleware('AdminAuth');
 Route::get('/remove-blog', [SiteController::class, 'remove_blog'])->middleware('AdminAuth');
 Route::post('/update-blog-submit', [SiteController::class, 'update_blog_submit_form'])->middleware('AdminAuth');
+
+// admin works
+Route::get('/all-seller', [\App\Http\Controllers\SellerController::class, 'index'])->name('admin.seller')->middleware('AdminAuth');
+Route::get('/update-all-seller/{id}', [\App\Http\Controllers\SellerController::class, 'editAllSeller'])->name('admin.seller.store')->middleware('AdminAuth');
+Route::post('/store-seller', [\App\Http\Controllers\SellerController::class, 'storeSeller'])->name('admin.all-seller.store')->middleware('AdminAuth');
+Route::post('/update-seller/{id}', [\App\Http\Controllers\SellerController::class, 'updateSeller'])->name('admin.seller.update')->middleware('AdminAuth');
+Route::get('/delete-seller', [\App\Http\Controllers\SellerController::class, 'deleteSeller'])->name('admin.seller.delete')->middleware('AdminAuth');
+Route::get('/add-seller', [\App\Http\Controllers\SellerController::class, 'addSeller'])->name('admin.seller.add')->middleware('AdminAuth');

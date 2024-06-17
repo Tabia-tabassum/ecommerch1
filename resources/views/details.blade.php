@@ -58,7 +58,13 @@
                             <input type="text" name="phoneNumber" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
                         </div>
-                        <button type="submit" class="btn btn-primary">Order Now</button>
+                        @if(\Illuminate\Support\Facades\Cookie::get('admin'))
+                            <button type="submit" class="btn btn-primary">Order Now</button>
+                            <input type="hidden" name="userId" class="form-control" value="{{\Illuminate\Support\Facades\Cookie::get('adminId')}}" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        @else
+                                <a href="{{route('admin.login')}}" class="btn btn-primary"> Login</a>
+                        @endif
+
                     </form>
                 </div>
             </div>

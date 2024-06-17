@@ -81,56 +81,30 @@
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
                             <div class="card-body p-5">
-                                <form>
+                                <form method="post" action="{{route('admin.all-seller.store')}}">
+                                    @csrf
                                     <!-- this is form title -->
                                     <div class="my-4">
-                                        <label class="form-label">Item Title</label>
+                                        <label class="form-label">Item Name</label>
                                         <input id="blog_title" type="text" class="form-control" name="name" required
                                                autofocus placeholder="Item Title">
                                     </div>
                                     <!-- this is form details -->
                                     <div class="my-4">
-                                        <label class="form-label">Details</label>
-                                        <textarea class="form-control" id="summary-ckeditor"
-                                                  name="summary-ckeditor"></textarea>
-
+                                        <label class="form-label">Item Email</label>
+                                        <input id="blog_title" type="email" class="form-control" name="email" required
+                                               autofocus placeholder="Item Title">
                                     </div>
                                     <!-- this is form image -->
 
                                     <div class="my-4">
-                                        <label class="form-label">Actual Price</label>
-                                        <input id="product_actual_price" type="number" class="form-control" name="actualPrice" required
-                                               autofocus placeholder="Product Actual price">
-                                    </div>
-
-                                    <div class="my-4">
-                                        <label for="inputState" class="form-label">Parent Category</label>
-                                        <select id="parentCategoryId" class="form-select" name="parentCategoryId">
-                                            <option value="" selected>Choose Category</option>
-                                            @foreach($allCategories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="my-4">
-                                        <label class="form-label">Offer Price</label>
-                                        <input id="product_offer_price" type="number" class="form-control" name="offerPrice" required
-                                               autofocus placeholder="Product Offer price">
+                                        <label class="form-label">Password</label>
+                                        <input id="blog_title" type="password" class="form-control" name="password" required
+                                               autofocus placeholder="Item Title">
                                     </div>
 
 
-                                    <div class="my-4">
-                                        <label class="form-label">Item Image</label>
-
-                                        <input id="demo_img" type="file" class="form-control" accept="image/png, image/gif, image/jpeg">
-
-                                        <img src="{{asset('img/blank_image.png')}}" class="w-100" style="height:300px"
-                                             id="show_image" alt="">
-                                    </div>
-
-
-                                    <button onclick="add_university()" class="btn">
+                                    <button type="submit" class="btn">
                                         Submit
                                     </button>
 

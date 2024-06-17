@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-container">
-                        <a href="{{route('admin.login')}}" class="btn btn-primary">Login</a>
+                        <a href="{{route('admin.login')}}" class="btn btn-primary">Seller Login</a>
                     </div>
                 </div>
             </div>

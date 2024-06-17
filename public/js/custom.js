@@ -50,6 +50,7 @@ $(document).ready(function(){
       var admin_name = $("#admin_name").val() ? $("#admin_name").val() : false;
       var admin_email = $("#admin_email").val() ? $("#admin_email").val() : false;
       var admin_password = $("#admin_password").val() ? $("#admin_password").val() : false;
+      var role = $("#role").val() ? $("#role").val() : false;
       var admin_password_confirm = $("#admin_password_confirm").val() ? $("#admin_password_confirm").val() : false;
 
       // validation error messgage show select
@@ -255,6 +256,7 @@ $(document).ready(function(){
     var admin_name = $("#admin_name").val() ? $("#admin_name").val() : false;
     var admin_email = $("#admin_email").val() ? $("#admin_email").val() : false;
     var admin_password = $("#admin_password").val() ? $("#admin_password").val() : false;
+    var role = $("#role").val() ? $("#role").val() : false;
     var admin_password_confirm = $("#admin_password_confirm").val() ? $("#admin_password_confirm").val() : false;
 
     // alert(admin_name+ "," + admin_email+ "," +admin_password+ "," +admin_password_confirm)
@@ -318,6 +320,7 @@ $(document).ready(function(){
           admin_name: admin_name,
           admin_email: admin_email,
           admin_password: admin_password,
+          role: role,
         })
         .then(function (response) {
 

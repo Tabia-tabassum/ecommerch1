@@ -1,6 +1,8 @@
 @extends('layouts.app')
-@section('title','Admin')
-@section('content')
+@php
+    $title = \Illuminate\Support\Facades\Cookie::get('role')==1?'Admin':'Seller';
+@endphp
+@section('title',$title)@section('content')
 
 
 <style>
@@ -25,6 +27,10 @@
                     <div class="position-sticky">
                     <div class="list-group list-group-flush mx-3">
 
+                        <a class="list-group-item list-group-item-action py-2 ripple active mb-2">
+                            <i class="fas fa-chart-area fa-fw me-3"></i><span>{{\Illuminate\Support\Facades\Cookie::get('role')==1?'Admin Dashboard':'Seller Dashboard'}}</span>
+                        </a>
+
                     <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>All Items</span>
                       </a>
@@ -40,9 +46,19 @@
                             <i class="fa fa-list-alt me-3"></i><span>Order</span>
                         </a>
 
-                        <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
-                            <i class="fa fa-list-alt me-3"></i><span>Category</span>
-                        </a>
+                        @if(\Illuminate\Support\Facades\Cookie::get('role') == 1)
+
+                            <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fa fa-list-alt me-3"></i><span>Category</span>
+                            </a>
+
+                            <a href="{{route('admin.seller')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fa fa-user me-3"></i><span>Seller</span>
+                            </a>
+                            <a href="{{route('admin.seller.add')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fa fa-user me-3"></i><span>Add Seller</span>
+                            </a>
+                        @endif
 
 
                         <a type="button" id="userLogout" class="list-group-item list-group-item-action py-2 ripple "

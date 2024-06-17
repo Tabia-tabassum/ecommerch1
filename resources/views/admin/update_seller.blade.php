@@ -35,12 +35,12 @@
                                 <i class="fas fa-chart-area fa-fw me-3"></i><span>All Items</span>
                             </a>
 
-                    <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple active">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
-                      </a>
-                      <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Item</span>
-                        </a>
+                            <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple active">
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
+                            </a>
+                            <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Item</span>
+                            </a>
                             <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-list-alt me-3"></i><span>Order</span>
                             </a>
@@ -81,57 +81,25 @@
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
                             <div class="card-body p-5">
-                                <form>
+                                <form method="post" action="{{route('admin.seller.update',$item->id)}}">
+                                    @csrf
                                     <!-- this is form title -->
                                     <div class="my-4">
-                                        <label class="form-label">Item Title</label>
-                                        <input id="blog_title" type="text" class="form-control" name="name" required
+                                        <label class="form-label">Item Name</label>
+                                        <input id="blog_title" type="text" class="form-control" name="name" required value="{{$item->name}}"
                                                autofocus placeholder="Item Title">
                                     </div>
                                     <!-- this is form details -->
                                     <div class="my-4">
-                                        <label class="form-label">Details</label>
-                                        <textarea class="form-control" id="summary-ckeditor"
-                                                  name="summary-ckeditor"></textarea>
-
+                                        <label class="form-label">Item Email</label>
+                                        <input id="blog_title" type="email" class="form-control" name="email" required value="{{$item->email}}"
+                                               autofocus placeholder="Item Title">
                                     </div>
                                     <!-- this is form image -->
 
-                                    <div class="my-4">
-                                        <label class="form-label">Actual Price</label>
-                                        <input id="product_actual_price" type="number" class="form-control" name="actualPrice" required
-                                               autofocus placeholder="Product Actual price">
-                                    </div>
 
-                                    <div class="my-4">
-                                        <label for="inputState" class="form-label">Parent Category</label>
-                                        <select id="parentCategoryId" class="form-select" name="parentCategoryId">
-                                            <option value="" selected>Choose Category</option>
-                                            @foreach($allCategories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="my-4">
-                                        <label class="form-label">Offer Price</label>
-                                        <input id="product_offer_price" type="number" class="form-control" name="offerPrice" required
-                                               autofocus placeholder="Product Offer price">
-                                    </div>
-
-
-                                    <div class="my-4">
-                                        <label class="form-label">Item Image</label>
-
-                                        <input id="demo_img" type="file" class="form-control" accept="image/png, image/gif, image/jpeg">
-
-                                        <img src="{{asset('img/blank_image.png')}}" class="w-100" style="height:300px"
-                                             id="show_image" alt="">
-                                    </div>
-
-
-                                    <button onclick="add_university()" class="btn">
-                                        Submit
+                                    <button type="submit" class="btn">
+                                        update
                                     </button>
 
 

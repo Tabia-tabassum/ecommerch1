@@ -50,6 +50,10 @@ $title = \Illuminate\Support\Facades\Cookie::get('role')==1?'Admin':'Seller';
                             <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-list-alt me-3"></i><span>Category</span>
                             </a>
+                        @endif
+
+                        @if(\Illuminate\Support\Facades\Cookie::get('role') == 1)
+
                             <a href="{{route('admin.seller')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-user me-3"></i><span>Seller</span>
                             </a>
@@ -77,10 +81,10 @@ $title = \Illuminate\Support\Facades\Cookie::get('role')==1?'Admin':'Seller';
                           <!-- this is table head -->
                         <thead class="table-dark ">
                           <tr>
-                            <th class="th-sm">Image</th>
-                            <th class="th-sm">Blog Title</th>
-                            <th class="th-sm">Details</th>
-                            <th class="th-sm">Delete</th>
+                            <th class="th-sm">Name</th>
+                            <th class="th-sm">Email</th>
+                            <th class="th-sm">Role</th>
+                            <th class="th-sm">Action</th>
 
                           </tr>
                          </thead>
@@ -89,19 +93,13 @@ $title = \Illuminate\Support\Facades\Cookie::get('role')==1?'Admin':'Seller';
                        <tbody>
                        @foreach ($all_blog as $blog)
             <tr>
-                <td class="th-sm ">
-                <img src="{{$blog->blog_image}}" class="card-img-top" alt="Image">
-                </td>
-                <td class="th-sm "><b>{{$blog->blog_title}}</b></td>
-                <td class="th-sm ">
-                  @php
-                  echo substr($blog->details,0,500)
-                  @endphp
-
-                </td>
+                <td class="th-sm "><b>{{$blog->name}}</b></td>
+                <td class="th-sm "><b>{{$blog->email}}</b></td>
+                <td class="th-sm "><b>{{__('SELLER')}}</b></td>
 
                 <td class="th-sm ">
                 <button onclick="remove_blog({!!$blog->id!!})"  class="btn btn-danger">Delete</button>
+                    <a href="{{route('admin.seller.store',$blog->id)}}"  class="btn btn-primary">Edit</a>
                 </td>
 
 
@@ -136,7 +134,7 @@ Swal.fire({
 }).then((result) => {
   if (result.isConfirmed) {
     axios
-           .get("/remove-blog", { params: { id: id } })
+           .get("/delete-seller", { params: { id: id } })
          .then(function (response) {
 
            if(response.status == 200 && response.data == 1){

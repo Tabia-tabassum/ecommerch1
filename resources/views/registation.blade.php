@@ -5,11 +5,11 @@
 <section class="vh-100 bg-image my-5 ">
   <div class="mask d-flex align-items-center gradient-custom-3">
     <div class="container ">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="row d-flex justify-content-center align-items-center h-150">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style="border-radius: 15px;">
+          <div class="card">
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <h2 class="text-uppercase text-center mb-1">Create an account</h2>
 
               <form>
 
@@ -24,6 +24,14 @@
                   <input type="email" id="admin_email" class="form-control form-control-lg" />
 
                 </div>
+
+                  <div class="form-outline mb-4">
+                      <label class="form-label">Select Role</label>
+                      <select class="form-select" id="role" name="role" required="true" aria-required="true">
+                          <option value="1">Admin</option>
+                          <option value="2">Seller</option>
+                      </select>
+                  </div>
 
                 <div class="form-outline mb-4">
                     <label>Password</label>

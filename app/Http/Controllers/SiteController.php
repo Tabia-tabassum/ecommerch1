@@ -71,6 +71,7 @@ class SiteController extends Controller
             'quantity' => $request->post('quantity'),
             'price' => $request->post('quantity') * $request->post('offerPrice'),
             'address' => $request->post('address'),
+            'user_id' => $request->post('userId'),
             'phone' => $request->post('phoneNumber'),
         ]);
 
@@ -83,7 +84,13 @@ class SiteController extends Controller
 
     function Admin_Home()
     {
-        $all_blog = Blog::where('id',Cookie::get('adminId'))->get();
+        $adminId = Cookie::get('adminId');
+        $role = Cookie::get('role');
+        if ($adminId && $role != 1) {
+            $all_blog = Blog::where('user_id', $adminId)->get();
+        } else {
+            $all_blog = Blog::all(); // Or whatever query you need for non-admin users
+        }
         return view('admin.admin', ['all_blog' => $all_blog]);
     }
 
@@ -95,14 +102,24 @@ class SiteController extends Controller
 
     function update_blog(Request $request)
     {
-        $all_blog = Blog::get();
+        $adminId = Cookie::get('adminId');
+        $role = Cookie::get('role');
+        if ($adminId && $role != 1) {
+            $all_blog = Blog::where('user_id', $adminId)->get();
+        } else {
+            $all_blog = Blog::all(); // Or whatever query you need for non-admin users
+        }
         return view('admin.update_blog', ['all_blog' => $all_blog]);
     }
 
 
     public function showOrderDetails()
     {
-        $data['allOrderDetails'] = ProductOffer::with(['getProduct'])->orderBy('id', 'DESC')->get();
+        if(Cookie::get('role')==1){
+            $data['allOrderDetails'] = ProductOffer::with(['getProduct'])->orderBy('id', 'DESC')->get();
+        }else{
+            $data['allOrderDetails'] = ProductOffer::with(['getProduct'])->where('user_id',Cookie::get('adminId'))->orderBy('id', 'DESC')->get();
+        }
 
         return view('admin.order', $data);
     }
@@ -136,6 +153,7 @@ class SiteController extends Controller
         $admin_name = $request->input('admin_name');
         $admin_email = $request->input('admin_email');
         $admin_password = $request->input('admin_password');
+        $role = $request->input('role');
 
         // Validate password strength start
         $uppercase = preg_match('@[A-Z]@', $admin_password);
@@ -171,6 +189,7 @@ class SiteController extends Controller
             'name' => $admin_name,
             'email' => $admin_email,
             'password' => $admin_password,
+            'role' => $role,
 
         ]);
 
@@ -192,6 +211,7 @@ class SiteController extends Controller
         if ($responce) {
             cookie::queue('admin', $admin_email_login, 1296000);
             cookie::queue('adminId', $responce->id, 1296000);
+            cookie::queue('role', $responce->role, 1296000);
             return 1;
 
         }
@@ -202,6 +222,7 @@ class SiteController extends Controller
     function admin_logout()
     {
         cookie::queue(cookie::forget('admin'));
+        cookie::queue(cookie::forget('adminId'));
         return 1;
     }
 
